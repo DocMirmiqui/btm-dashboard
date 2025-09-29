@@ -12,7 +12,7 @@ A modern, responsive dashboard for BTMC's live stream with real-time Twitch stat
 
 ## 🚀 Live Demo
 
-**[View Live Dashboard](http://doc.ekka.fr:5173)**
+**[View Live Dashboard](http://doc.ekka.fr:5173)** (the player is broken at the moment)
 
 ## 📋 Prerequisites
 
@@ -137,3 +137,4 @@ This project is open source and available under the [MIT License](LICENSE).
 - BTMC for the inspiration
 - Twitch and osu! for their APIs
 - The osu! community for the amazing game
+
