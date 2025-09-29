@@ -1,34 +1,549 @@
 <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BTMC • Live Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="brand">
+          <div class="dot"></div>
+          <h1><span>BTMC</span> • Live Dashboard</h1>
+        </div>
+        <div class="actions">
+          <a href="https://www.twitch.tv/btmc" target="_blank" rel="noopener noreferrer" class="btn primary" style="text-decoration: none;">Watch Live</a>
+        </div>
+      </header>
 
-<html>
-<head>
-  <script src="log.js"></script>
-  <script src="dvdmc.js" defer></script> 
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-  <h1>Hello</h1>
-  <br>
-  <p>I am btmc :3</p>
-  <img src="https://cdn.7tv.app/emote/01GY6Y9T6G000CX7G8QSR9TRP1/4x.avif">
-  <p> </p>
-    <div class="latex4000Webring">
-      <a href="https://nonacademic.net" title="Collective">Latex 4000</a>
-      <div class="latex4000WebringButtons">
-          <a href="https://nonacademic.net/ring?action=prev&amp;from=diodex" title="Previous">←</a>
-          <a href="https://nonacademic.net/ring?action=rand&amp;from=diodex" title="Random">Random</a>
-          <a href="https://nonacademic.net/ring?action=next&amp;from=diodex" title="Next">→</a>
-      </div>
-  </div>
-  <a href="./captsiro/index.html">CaptSiro's hand made 3D rendering engine</a>
-  <div>
-    <div style="justify-content: center; display: flex; flex-direction: row;">
-      <h3 style="text-align: center">Here have a random ed message</h3>
-      <button style="text-align: center" id="newRandomLog" onclick="setRandomLog()">New Message</button>
+      <aside class="left">
+        <section class="panel card" id="twitch-channel-card" style="cursor: pointer;" onclick="window.open('https://www.twitch.tv/btmc', '_blank')">
+          <h2>Twitch Channel</h2>
+          <div class="channel">
+            <div class="avatar" id="twitch-avatar"></div>
+            <div>
+              <div class="name" id="twitch-display-name">btmc</div>
+              <div class="muted" id="twitch-bio">Streamer • Content Creator</div>
+            </div>
+          </div>
+          <div class="row">
+            <span class="muted">Status</span>
+            <span class="pill" id="twitch-live-pill">Unknown</span>
+          </div>
+          <div class="row">
+            <span class="muted">Category</span>
+            <span class="pill" id="twitch-category">-</span>
+          </div>
+          <div class="row">
+            <span class="muted">Language</span>
+            <span class="pill" id="twitch-language">-</span>
+          </div>
+        </section>
+
+        <section class="panel card" id="twitch-vods-card">
+          <h2>Recent VODs</h2>
+          <div class="vods" id="twitch-vods"></div>
+        </section>
+
+        <section class="panel card" id="twitch-clips-card">
+          <h2>Popular Clips</h2>
+          <div class="clips" id="twitch-clips"></div>
+        </section>
+      </aside>
+
+      <main class="center">
+        <section class="panel player">
+          <!-- Remplace par l'iframe Twitch officielle lors de l'intégration -->
+          <iframe
+            class="frame"
+            src="https://player.twitch.tv/?channel=btmc&parent=localhost&parent=127.0.0.1"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+          <div class="overlay" id="twitch-overlay">
+            <span class="badge" id="twitch-title-badge">Titre du live</span>
+            <span class="badge" id="twitch-category-badge">osu!</span>
+            <span class="badge" id="twitch-viewers-badge">-- viewers</span>
+            <span class="badge" id="twitch-uptime-badge">Uptime --:--:--</span>
+          </div>
+        </section>
+        
+        <section class="panel card">
+          <h2>Links & Resources</h2>
+          <div class="links-grid">
+            <div class="link-group">
+              <h3>Social</h3>
+              <a href="https://www.youtube.com/c/btmclive" target="_blank" rel="noopener noreferrer" class="link-item">
+                <span class="link-icon">▶</span>
+                <span>YouTube</span>
+              </a>
+              <a href="https://x.com/btmclive" target="_blank" rel="noopener noreferrer" class="link-item">
+                <span class="link-icon">𝕏</span>
+                <span>Twitter</span>
+              </a>
+              <a href="https://www.instagram.com/btmclive" target="_blank" rel="noopener noreferrer" class="link-item">
+                <span class="link-icon">📷</span>
+                <span>Instagram</span>
+              </a>
+              <a href="https://discord.com/invite/btmc" target="_blank" rel="noopener noreferrer" class="link-item">
+                <span class="link-icon">💬</span>
+                <span>Discord</span>
+              </a>
+            </div>
+            
+            <div class="link-group">
+              <h3>osu! Resources</h3>
+              <a href="https://osu.ppy.sh/users/3171691" target="_blank" rel="noopener noreferrer" class="link-item">
+                <span class="link-icon">⭕</span>
+                <span>osu! Profile</span>
+              </a>
+              <a href="https://skins.btmc.live" target="_blank" rel="noopener noreferrer" class="link-item">
+                <span class="link-icon">🎨</span>
+                <span>Skins</span>
+              </a>
+              <a href="https://btmc.live/requests" target="_blank" rel="noopener noreferrer" class="link-item">
+                <span class="link-icon">🎵</span>
+                <span>Request Beatmap</span>
+              </a>
+            </div>
+            
+            <div class="link-group">
+              <h3>Setup & Config</h3>
+              <a href="https://www.reddit.com/r/osugame/comments/83hbiq/comment/dvhycc8" target="_blank" rel="noopener noreferrer" class="link-item">
+                <span class="link-icon">🖊</span>
+                <span>Tablet Drivers</span>
+              </a>
+              <a href="https://imgur.com/OaSTtCQ" target="_blank" rel="noopener noreferrer" class="link-item">
+                <span class="link-icon">📐</span>
+                <span>Tablet Area</span>
+              </a>
+              <a href="https://imgur.com/a/grip-changes-iFOZOw4" target="_blank" rel="noopener noreferrer" class="link-item">
+                <span class="link-icon">✋</span>
+                <span>Grip / Playstyle</span>
+              </a>
+              <a href="https://rentry.org/btmcperipherals" target="_blank" rel="noopener noreferrer" class="link-item">
+                <span class="link-icon">🖥</span>
+                <span>PC Specs</span>
+              </a>
+            </div>
+            
+            <div class="link-group">
+              <h3>Stream Info</h3>
+              <a href="https://streamelements.com/btmc/commands" target="_blank" rel="noopener noreferrer" class="link-item">
+                <span class="link-icon">📋</span>
+                <span>Commands List</span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="right">
+        <section class="panel card" style="cursor: pointer;" onclick="window.open('https://osu.ppy.sh/users/3171691', '_blank')">
+          <h2>osu! Profile</h2>
+          <div class="profile">
+            <div class="avatar" id="osu-avatar" style="border-radius: 50%;"></div>
+            <div>
+              <div class="name" id="osu-username">btmc</div>
+              <div class="muted" id="osu-sub">ID 3171691</div>
+            </div>
+          </div>
+          <div class="pp">
+            <div class="num" id="osu-pp">--pp</div>
+            <span class="pill" id="osu-rank-global">#— Global</span>
+            <span class="pill" id="osu-rank-country">#— —</span>
+          </div>
+          <div class="grades">
+            <span class="grade" id="osu-ss">SS 0</span>
+            <span class="grade" id="osu-s">S 0</span>
+            <span class="grade" id="osu-a">A 0</span>
+          </div>
+        </section>
+
+        <section class="panel card" id="osu-top">
+          <h2>Top Plays</h2>
+          <div class="list" id="osu-top-list"></div>
+        </section>
+
+        <section class="panel card" id="osu-recent">
+          <h2>Recent Plays</h2>
+          <div class="list" id="osu-recent-list"></div>
+        </section>
+      </aside>
     </div>
-    <p style="text-align: center" id="randomLog">Loading...</p>
-  </div>
-</body>
+    <script src="config.local.js"></script>
+    <script>
+      (function() {
+        try {
+          var frame = document.querySelector('.player iframe');
+          if (!frame) return;
+          var host = location.hostname;
+          var url = new URL(frame.src);
+          // Ajoute plusieurs parents autorisés pour couvrir différents hôtes locaux
+          var parents = ['localhost', '127.0.0.1'];
+          if (host && parents.indexOf(host) === -1) parents.push(host);
+          // Nettoie et ré-applique tous les parents
+          url.searchParams.delete('parent');
+          parents.forEach(function(p){ url.searchParams.append('parent', p); });
+          frame.src = url.toString();
+        } catch (e) {}
+      })();
+      // --- Intégration Twitch (Helix) côté client ---
+      (function() {
+        var TWITCH_LOGIN = 'btmc';
+        var API_BASE = 'https://api.twitch.tv/helix';
+
+        var els = {
+          displayName: document.getElementById('twitch-display-name'),
+          bio: document.getElementById('twitch-bio'),
+          avatar: document.getElementById('twitch-avatar'),
+          livePill: document.getElementById('twitch-live-pill'),
+          category: document.getElementById('twitch-category'),
+          language: document.getElementById('twitch-language'),
+          vods: document.getElementById('twitch-vods'),
+          clips: document.getElementById('twitch-clips'),
+          titleBadge: document.getElementById('twitch-title-badge'),
+          categoryBadge: document.getElementById('twitch-category-badge'),
+          viewersBadge: document.getElementById('twitch-viewers-badge'),
+          uptimeBadge: document.getElementById('twitch-uptime-badge')
+        };
+
+        function fmtNumber(n){ try { return new Intl.NumberFormat('fr-FR').format(n); } catch(_) { return String(n); } }
+        function fmtDuration(ms){
+          var sec = Math.max(0, Math.floor(ms/1000));
+          var h = String(Math.floor(sec/3600)).padStart(2,'0');
+          var m = String(Math.floor((sec%3600)/60)).padStart(2,'0');
+          var s = String(sec%60).padStart(2,'0');
+          return h+':'+m+':'+s;
+        }
+
+        function loadCreds(){
+          try { return JSON.parse(localStorage.getItem('tw_creds')||'{}'); } catch(_) { return {}; }
+        }
+        function saveCreds(c){ try { localStorage.setItem('tw_creds', JSON.stringify(c)); } catch(_) {} }
+
+        async function fetchAppToken(clientId, clientSecret){
+          var body = new URLSearchParams();
+          body.set('client_id', clientId);
+          body.set('client_secret', clientSecret);
+          body.set('grant_type', 'client_credentials');
+          var res = await fetch('https://id.twitch.tv/oauth2/token', { method: 'POST', body: body });
+          if(!res.ok) throw new Error('token');
+          return res.json();
+        }
+
+        async function helix(path, params, creds){
+          var url = new URL(API_BASE + path);
+          if(params) Object.keys(params).forEach(function(k){ if(params[k]!==undefined && params[k]!==null) url.searchParams.set(k, params[k]); });
+          var res = await fetch(url.toString(), {
+            headers: { 'Client-ID': creds.clientId, 'Authorization': 'Bearer ' + creds.accessToken }
+          });
+          if(!res.ok) throw new Error('helix:' + path);
+          return res.json();
+        }
+
+        function ensureCreds(){
+          return new Promise(async function(resolve){
+            var creds = loadCreds();
+            if(creds.clientId && creds.accessToken && creds.expiresAt && Date.now() < creds.expiresAt){
+              return resolve(creds);
+            }
+            var preset = (window.CONFIG||{});
+            var clientId = creds.clientId || preset.TWITCH_CLIENT_ID || prompt('Twitch Client ID:');
+            var clientSecret = creds.clientSecret || preset.TWITCH_CLIENT_SECRET || prompt('Twitch Client Secret:');
+            if(!clientId || !clientSecret){ return resolve({}); }
+            try {
+              var tok = await fetchAppToken(clientId, clientSecret);
+              var newCreds = {
+                clientId: clientId,
+                clientSecret: clientSecret,
+                accessToken: tok.access_token,
+                expiresAt: Date.now() + (tok.expires_in*1000 - 60*1000)
+              };
+              saveCreds(newCreds);
+              resolve(newCreds);
+            } catch(_) { resolve({}); }
+          });
+        }
+
+        function renderUser(u){
+          if(!u) return;
+          if(els.displayName) els.displayName.textContent = u.display_name || u.login || 'btmc';
+          if(els.bio) els.bio.textContent = u.description || '';
+          if(els.avatar) {
+            els.avatar.style.backgroundImage = u.profile_image_url ? 'url('+u.profile_image_url+')' : '';
+            els.avatar.style.backgroundSize = 'cover';
+          }
+        }
+
+        function renderLive(stream, channel, game){
+          var isLive = !!stream;
+          if(els.livePill){
+            els.livePill.textContent = isLive ? 'LIVE' : 'OFFLINE';
+            els.livePill.style.color = isLive ? 'var(--ok)' : 'var(--muted)';
+          }
+          var title = (channel && channel.title) || (stream && stream.title) || '';
+          var category = (game && game.name) || (stream && stream.game_name) || '-';
+          var lang = (channel && channel.broadcaster_language) || (stream && stream.language) || '-';
+          var viewers = (stream && stream.viewer_count) || null;
+          if(els.category) els.category.textContent = category || '-';
+          if(els.language) els.language.textContent = (lang||'-').toUpperCase();
+          if(els.titleBadge) els.titleBadge.textContent = title || '—';
+          if(els.categoryBadge) els.categoryBadge.textContent = category || '-';
+          if(els.viewersBadge) els.viewersBadge.textContent = viewers!=null ? fmtNumber(viewers)+' viewers' : '— viewers';
+
+          var uptime = '--:--:--';
+          if(isLive && stream.started_at){
+            var start = Date.parse(stream.started_at);
+            uptime = fmtDuration(Date.now() - start);
+          }
+          if(els.uptimeBadge) els.uptimeBadge.textContent = 'Uptime ' + uptime;
+        }
+
+        function elMedia(item){
+          var wrap = document.createElement('a');
+          wrap.className = 'media';
+          wrap.href = item.url; wrap.target = '_blank'; wrap.rel = 'noopener noreferrer';
+          var thumb = document.createElement('div'); thumb.className = 'thumb'; thumb.style.backgroundSize = 'cover'; thumb.style.backgroundPosition = 'center';
+          if(item.thumbnail) thumb.style.backgroundImage = 'url('+item.thumbnail+')';
+          var right = document.createElement('div');
+          var t = document.createElement('div'); t.className = 'title'; t.textContent = item.title || '';
+          var m = document.createElement('div'); m.className = 'muted'; m.textContent = item.meta || '';
+          right.appendChild(t); right.appendChild(m);
+          wrap.appendChild(thumb); wrap.appendChild(right);
+          return wrap;
+        }
+
+        async function loadData(){
+          var creds = await ensureCreds();
+          if(!creds.clientId || !creds.accessToken){ return; }
+
+          // 1) user
+          var users = await helix('/users', { login: TWITCH_LOGIN }, creds);
+          var user = users.data && users.data[0];
+          renderUser(user);
+          if(!user) return;
+
+          // 2) stream status
+          var streams = await helix('/streams', { user_id: user.id }, creds);
+          var stream = streams.data && streams.data[0];
+
+          // 3) channel info
+          var channels = await helix('/channels', { broadcaster_id: user.id }, creds);
+          var channel = channels.data && channels.data[0];
+
+          // 4) category/game
+          var game = null;
+          var gameId = (channel && channel.game_id) || (stream && stream.game_id);
+          if(gameId){
+            var games = await helix('/games', { id: gameId }, creds);
+            game = games.data && games.data[0];
+          }
+          renderLive(stream, channel, game);
+
+          // 5) videos (VODs)
+          if(els.vods){
+            els.vods.innerHTML = '';
+            var videos = await helix('/videos', { user_id: user.id, first: 4, sort: 'time', type: 'archive' }, creds);
+            (videos.data||[]).forEach(function(v){
+              var url = 'https://www.twitch.tv/videos/' + v.id;
+              var tn = v.thumbnail_url ? v.thumbnail_url.replace('%{width}', '224').replace('%{height}', '126') : '';
+              var meta = (v.duration||'') + (v.view_count!=null ? ' • ' + fmtNumber(v.view_count) + ' vues' : '') + (v.published_at ? ' • ' + new Date(v.published_at).toLocaleDateString('fr-FR') : '');
+              els.vods.appendChild(elMedia({ url: url, thumbnail: tn, title: v.title, meta: meta }));
+            });
+          }
+
+          // 6) clips populaires (30 jours)
+          if(els.clips){
+            els.clips.innerHTML = '';
+            var startedAt = new Date(Date.now() - 30*24*3600*1000).toISOString();
+            var clips = await helix('/clips', { broadcaster_id: user.id, first: 6, started_at: startedAt }, creds);
+            (clips.data||[]).forEach(function(c){
+              var tn = c.thumbnail_url || '';
+              var meta = (c.view_count!=null ? fmtNumber(c.view_count)+' vues' : '') + (c.created_at ? ' • ' + new Date(c.created_at).toLocaleDateString('fr-FR') : '')
+              els.clips.appendChild(elMedia({ url: c.url, thumbnail: tn, title: c.title, meta: meta }));
+            });
+          }
+        }
+
+        // refresh périodique des infos live (sans redemander le token)
+        function scheduleLiveRefresh(){
+          var creds = loadCreds();
+          if(!creds.clientId || !creds.accessToken) return;
+          Promise.resolve().then(async function(){
+            try {
+              var users = await helix('/users', { login: TWITCH_LOGIN }, creds);
+              var user = users.data && users.data[0];
+              if(!user) return;
+              var streams = await helix('/streams', { user_id: user.id }, creds);
+              var stream = streams.data && streams.data[0];
+              var channels = await helix('/channels', { broadcaster_id: user.id }, creds);
+              var channel = channels.data && channels.data[0];
+              var game = null; var gameId = (channel && channel.game_id) || (stream && stream.game_id);
+              if(gameId){ var games = await helix('/games', { id: gameId }, creds); game = games.data && games.data[0]; }
+              renderLive(stream, channel, game);
+            } catch(_) {}
+          });
+          setTimeout(scheduleLiveRefresh, 20000);
+        }
+
+        loadData().then(scheduleLiveRefresh);
+      })();
+
+      // --- Intégration osu! v2 (client credentials) ---
+      (function(){
+        var OSU_USER_ID = 3171691;
+        var els = {
+          avatar: document.getElementById('osu-avatar'),
+          username: document.getElementById('osu-username'),
+          sub: document.getElementById('osu-sub'),
+          pp: document.getElementById('osu-pp'),
+          rankGlobal: document.getElementById('osu-rank-global'),
+          rankCountry: document.getElementById('osu-rank-country'),
+          ss: document.getElementById('osu-ss'),
+          s: document.getElementById('osu-s'),
+          a: document.getElementById('osu-a'),
+          topList: document.getElementById('osu-top-list'),
+          recentList: document.getElementById('osu-recent-list')
+        };
+
+        function fmtNumber(n){ try { return new Intl.NumberFormat('fr-FR').format(n); } catch(_) { return String(n); } }
+        function modsToString(enabledMods){
+          if(!enabledMods || !enabledMods.length) return '';
+          return enabledMods.join('');
+        }
+        function accToPct(a){ return (Math.round((a||0)*10000)/100).toFixed(2) + '%'; }
+
+        function loadOsuCreds(){
+          var cfg = window.CONFIG||{};
+          return { clientId: cfg.OSU_CLIENT_ID, clientSecret: cfg.OSU_CLIENT_SECRET };
+        }
+
+        async function fetchOsuToken(id, secret){
+          var url = '/api/osu/token?clientId=' + encodeURIComponent(id) + '&clientSecret=' + encodeURIComponent(secret);
+          var res = await fetch(url, { method: 'POST' });
+          if(!res.ok){
+            var details = null; try { details = await res.json(); } catch(_){}
+            console.error('[osu token] http', res.status, details);
+            throw new Error('osu_token');
+          }
+          return res.json();
+        }
+
+        async function osuApi(path, token){
+          var url = '/api/osu' + path;
+          var res = await fetch(url, { headers: { 'x-osu-token': token } });
+          if(!res.ok) throw new Error('osu_api:'+path);
+          return res.json();
+        }
+
+        function renderUser(user){
+          if(!user) return;
+          if(els.username) els.username.textContent = user.username || 'btmc';
+          if(els.sub) {
+            var country = (user.country && user.country.name) ? ' • ' + user.country.name : '';
+            els.sub.textContent = 'ID ' + user.id + country;
+          }
+          if(els.avatar) {
+            var url = user.avatar_url || '';
+            els.avatar.style.backgroundImage = url ? 'url('+url+')' : '';
+            els.avatar.style.backgroundSize = 'cover';
+            els.avatar.style.backgroundPosition = 'center';
+          }
+          var stats = (user.statistics) || {};
+          if(els.pp) els.pp.textContent = (stats.pp ? fmtNumber(Math.round(stats.pp)) : '--') + 'pp';
+          if(els.rankGlobal) els.rankGlobal.textContent = '#' + (stats.global_rank || '—') + ' Global';
+          if(els.rankCountry) {
+            var code = (user.country && user.country.code) || '';
+            var rankC = (stats.country_rank || '—');
+            els.rankCountry.textContent = '#' + rankC + ' ' + code;
+          }
+          if(els.ss) els.ss.textContent = 'SS : ' + fmtNumber((stats.grade_counts && (stats.grade_counts.ss + (stats.grade_counts.ssh||0))) || 0);
+          if(els.s) els.s.textContent = 'S : ' + fmtNumber((stats.grade_counts && (stats.grade_counts.s + (stats.grade_counts.sh||0))) || 0);
+          if(els.a) els.a.textContent = 'A : ' + fmtNumber((stats.grade_counts && stats.grade_counts.a) || 0);
+        }
+
+        function renderPlays(listEl, scores){
+          if(!listEl) return;
+          listEl.innerHTML = '';
+          (scores||[]).forEach(function(sc){
+            var title = (sc.beatmapset ? (sc.beatmapset.artist + ' - ' + sc.beatmapset.title) : 'Beatmap');
+            var acc = accToPct(sc.accuracy);
+            var pp = sc.pp ? Math.round(sc.pp) : null;
+            var combo = sc.max_combo ? (sc.max_combo + 'x') : '';
+            var mods = modsToString(sc.mods);
+            var when = sc.created_at ? new Date(sc.created_at).toLocaleDateString('fr-FR') : '';
+            
+            // Créer un lien vers le score osu!
+            var play = document.createElement('a'); 
+            play.className = 'play';
+            play.style.textDecoration = 'none';
+            play.style.color = 'inherit';
+            
+            // URL du score osu! (format: https://osu.ppy.sh/scores/osu/score_id)
+            if(sc.id) {
+              play.href = 'https://osu.ppy.sh/scores/osu/' + sc.id;
+              play.target = '_blank';
+              play.rel = 'noopener noreferrer';
+            }
+            
+            var t = document.createElement('div'); t.className = 'title'; t.textContent = title;
+            var m = document.createElement('div'); m.className = 'meta';
+            if(pp!=null) { var s=document.createElement('span'); s.textContent='pp '+pp; m.appendChild(s); }
+            var s2=document.createElement('span'); s2.textContent=acc; m.appendChild(s2);
+            if(mods){ var s3=document.createElement('span'); s3.textContent=mods; m.appendChild(s3); }
+            if(combo){ var s4=document.createElement('span'); s4.textContent=combo; m.appendChild(s4); }
+            if(when){ var s5=document.createElement('span'); s5.textContent=when; m.appendChild(s5); }
+            play.appendChild(t); play.appendChild(m);
+            listEl.appendChild(play);
+          });
+        }
+
+        function showOsuError(message){
+          try {
+            if(els.sub){ els.sub.textContent = message; }
+            if(els.topList && !els.topList.children.length){
+              var d=document.createElement('div'); d.className='muted'; d.textContent='(Top plays indisponibles)'; els.topList.appendChild(d);
+            }
+            if(els.recentList && !els.recentList.children.length){
+              var d2=document.createElement('div'); d2.className='muted'; d2.textContent='(Recent plays indisponibles)'; els.recentList.appendChild(d2);
+            }
+          } catch(_) {}
+        }
+
+        async function loadOsu(){
+          var creds = loadOsuCreds();
+          if(!creds.clientId || !creds.clientSecret){
+            console.warn('[osu] Manque OSU_CLIENT_ID/OSU_CLIENT_SECRET dans config.local.js');
+            showOsuError('Configurer OSU_CLIENT_ID/SECRET dans config.local.js');
+            return;
+          }
+          try {
+            var tok = await fetchOsuToken(creds.clientId, creds.clientSecret);
+            var accessToken = tok.access_token;
+            // profil + stats std
+            var user = await osuApi('/users/' + OSU_USER_ID + '/osu', accessToken);
+            renderUser(user);
+            // top plays
+            var top = await osuApi('/users/' + OSU_USER_ID + '/scores/best?mode=osu&limit=5', accessToken);
+            renderPlays(els.topList, top);
+            // recent plays
+            var recent = await osuApi('/users/' + OSU_USER_ID + '/scores/recent?mode=osu&limit=5', accessToken);
+            renderPlays(els.recentList, recent);
+          } catch(err) {
+            console.error('[osu] erreur', err);
+            var msg = 'Erreur de chargement osu!';
+            try { if(err && err.message) msg += ' ('+err.message+')'; } catch(_){}
+            showOsuError(msg + ' — un proxy serveur peut être nécessaire si CORS bloque.');
+          }
+        }
+
+        loadOsu();
+      })();
+    </script>
+  </body>
 </html>
 
 
