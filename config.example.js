@@ -1,11 +1,12 @@
-// Renomme ce fichier en config.local.js (même dossier),
-// puis remplis tes identifiants Twitch ci-dessous. Ce fichier est ignoré par Git.
+// Rename this file to config.local.js (same folder),
+// then fill in your Twitch credentials below. This file is ignored by Git.
 
 window.CONFIG = {
-  TWITCH_CLIENT_ID: "colle-ton-client-id-ici",
-  TWITCH_CLIENT_SECRET: "colle-ton-client-secret-ici",
-  OSU_CLIENT_ID: 0, // remplace par ton client_id osu! (nombre)
-  OSU_CLIENT_SECRET: "colle-ton-client-secret-osu-ici"
+TWITCH_CLIENT_ID: "paste-your-client-id-here",
+TWITCH_CLIENT_SECRET: "paste-your-client-secret-here",
+OSU_CLIENT_ID: 0,
+OSU_CLIENT_SECRET: "paste-your-osu-client-secret-here"
 };
+
 
 
