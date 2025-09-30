@@ -25,7 +25,7 @@ A modern, responsive dashboard for BTMC's live stream with real-time Twitch stat
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/DocMirmiqui/btm-dashboard.git
 cd btmc-dashboard
 ```
 
@@ -137,5 +137,6 @@ This project is open source and available under the [MIT License](LICENSE).
 - BTMC for the inspiration
 - Twitch and osu! for their APIs
 - The osu! community for the amazing game
+
 
 
